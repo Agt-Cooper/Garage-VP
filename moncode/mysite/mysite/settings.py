@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -48,6 +49,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware", 
+    #The order of MIDDLEWARE is important. You should include the Debug Toolbar middleware as early as possible
+    # in the list. However, it must come after any other middleware that encodes the response’s content, such as GZipMiddleware
 ]
 
 ROOT_URLCONF = 'mysite.urls'
