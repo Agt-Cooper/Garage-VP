@@ -1,0 +1,18 @@
+<div class="navbar-fluid">
+    <nav class="navbar">
+    <div class="nav-logo_wrapper">
+        <div class="nav-logo"><a href="/"></a></div>
+    </div>
+    <ul class="nav-menu">
+        <li class="nav-menu-item"><a href="/catalog.html">Catalogue</a></li>
+    </ul>
+    <ul class="nav-menu2" style="position: absolute;right:0">
+        {% if user.is_authenticated %}
+        <li class="nav-menu-item"><a href="/logout.html">Déconnexion</a></li>
+        {% else %}
+        <li class="nav-menu-item"><a href="/login.html">Connexion</a></li>
+        {% endif %}
+    <li class="nav-menu-item"><a href="/admin.html">Administration</a></li>
+    </ul>
+    </nav>
+</div>
