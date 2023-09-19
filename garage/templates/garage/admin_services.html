@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+    <div class="row">
+
+        <!-- Liste des services existants -->
+        <div class="col admin-service-list-wrapper border-me">
+            <div class="row">
+                    <div class="list-group admin-service-list" id="admin-service-list"></div>
+            </div>
+            <div class="row">
+                    <button id="admCreate" type="button" class="btn btn-primary">Créer nouveau service</button>
+                    <button hidden id="admDelete" type="button" class="btn btn-danger">Supprimer</button>
+            </div>
+        </div>
+
+        <!-- Formulaire modification service -->
+        <div class="col admin-service-details-wrapper border-me">
+            <div class="row">
+               <form id="admin-service-details-form" method="post" action="admin.html" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col">
+                            <label for="admDetailsName">Nom du Service</label>
+                            <input type="text" class="form-control" name="service_name" id="admDetailsName" placeholder="Nom" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="admDetailsPrice">Prix</label>
+                            <input step=".01" type="number" class="form-control" name="service_price" id="admDetailsPrice" />
+                        </div>
+                        <div class="col">
+                            <label for="admDetailsPic">Image</label>
+                            <input type="file" class="form-control-file" id="admDetailsPic" name="service_img_name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="checkbox" class="btn-check" name="service_enabled" id="admDetailsEnabled" checked autocomplete="off">
+                        <label class="btn btn-outline-secondary" id="admDetailsEnabledLabel" for="admDetailsEnabled">Actif</label>
+                        <br>
+                    </div>
+                    <div class="row">
+                        <button id="admValidate" type="submit" class="btn btn-primary">Sélectionnez un service dans la liste</button>
+                    </div>
+                    <div class="row"></div>
+                    <hr />
+                    <div id="admin-service-preview"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
