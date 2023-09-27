@@ -10,7 +10,12 @@ from .models import Service
 ###############################################################################
 
 def index(request):
-    return HttpResponse("Page en construction, bisou!")
+    services = Service.objects.filter(enabled=True)
+    template = loader.get_template("garage/home.html")
+    context = {
+        'page_title': 'Garage VP',
+    }
+    return HttpResponse(template.render(context, request))
 
 
 def admin_services_html(request):

@@ -62,3 +62,10 @@
 #admin-service-details-form .row {
   margin: 15px auto 15px auto;
 }
+
+.pouet {
+        color: red;
+        background: grey;
+        border: 1px dashed blue;
+        border-radius: 5px;
+}
