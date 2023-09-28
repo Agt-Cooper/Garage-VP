@@ -69,3 +69,11 @@
         border: 1px dashed blue;
         border-radius: 5px;
 }
+
+/* ####### FOOTER ####### */
+
+.footer {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: italic;
+  background: blue;
+}
