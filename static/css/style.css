@@ -65,15 +65,19 @@
 
 .pouet {
         color: red;
-        background: grey;
+        background: rgb(21, 227, 55);
         border: 1px dashed blue;
         border-radius: 5px;
 }
 
 /* ####### FOOTER ####### */
 
-.footer {
+footer {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-style: italic;
-  background: blue;
+  background: #fff7eb;
+}
+
+.liste-services {
+  list-style-type: none;
 }
