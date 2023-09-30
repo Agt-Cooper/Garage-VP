@@ -1,3 +1,18 @@
-<div>
-  <!-- Header -->
-</div>
+<header>
+<!-- Header --> 
+
+<nav>
+    <h1><a href="/">Garage V.Parrot</a></h1>
+    <div class="onglets">
+      <a href="/catalog.html">Véhicules</a>
+      {% if user.is_authenticated %}
+      <a href="/admin/home.html">Administration</a>
+      <a href="/logout.html">Déconnexion</a>
+      {% else %}
+      <a href="/login.html">Connexion</a>
+      {% endif %}
+    </div>
+  </nav>
+
+</header>
+

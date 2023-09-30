@@ -7,9 +7,9 @@ Design et implementation de la BDD
 
 - [ ] Utilisateurs
   - [ ] Employés
-  - [ ] Admins
+  - [X] Admins
 - [ ] horaires du garage
-- [ ] Services
+- [X] Services
 - [ ] Mail visiteur
 - [ ] Avis
 - [ ] Véhicules
@@ -21,15 +21,15 @@ Design et implementation de la BDD
 US1. L'administrateur et l'Employé peuvent se connecter en utilisant leur e-mail + mot de passe sécurisé.
 =========================================================================================================
 
-- [ ] Front-End: Page de connexion
-- [ ] Back-End: Sessions via Django
+- [X] Front-End: Page de connexion
+- [X] Back-End: Sessions via Django
 - [ ] L'administrateur peut créer un compte employé
 
 
 US3. Définir des horaires d'ouverture
 =====================================
 
-- [ ] Les horaires sont disponibles dans le footer du site web
+- [X] Les horaires sont disponibles dans le footer du site web
 - [ ] L'administrateur peut éditer ces informations depuis le back-office.
 
 
@@ -37,7 +37,7 @@ US2. Présenter les services
 ===========================
 
 - [X] Le site web présente les différents services disponibles
-- [ ] L'administrateur peut modifier la liste et les détails des services disponibles
+- [X] L'administrateur peut modifier la liste et les détails des services disponibles
 
 
 US3. Exposer les voitures d'occasion

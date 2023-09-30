@@ -1,10 +1,40 @@
 <footer>
-  <!-- Footer -->
-<hr>
+<!-- Footer -->
+  <h1>Contacts</h1>
+  <div>
+      <div class="contacts">
+          {% if opening_hours %}
+          <div class="contact">
+              <h2>Assistance 24h/24</h2>
+              <ul class="liste-horaires">
+                {% for opening_hour in opening_hours %}
+                  <li>{{opening_hour}}</li>
+                {% endfor %}
+              </ul>
+          </div>
+          {% endif %}
+          <div class="contact">
+              <h2>Garantie constructeur préservée</h2>
+              <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia excepturi repellat omnis aspernatur sequi tempore cum dignissimos illum? Dolore iusto mollitia laborum sint labore aut hic nobis similique ex quo.</p>
+          </div>
+          <div class="contact">
+              <h2>Automobiliste et responsable</h2>
+              <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia excepturi repellat omnis aspernatur sequi tempore cum dignissimos illum? Dolore iusto mollitia laborum sint labore aut hic nobis similique ex quo.</p>
+          </div>
+          <div class="contact">
+              <h2>Réseau</h2>
+              <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia excepturi repellat omnis aspernatur sequi tempore cum dignissimos illum? Dolore iusto mollitia laborum sint labore aut hic nobis similique ex quo.</p>
+          </div>
+      </div>
+  </div>
+  <p id="contact">&copy; 2023, Garage V.Parrot</p>
+
+</footer>
+<!-- <hr>
 
   <div class="content-footer">
 
-    <div class="blo footer-infos">
+    <div class="bloc footer-infos">
 
       <h3>Informations</h3>
 
@@ -15,9 +45,9 @@
 
     </div>
 
-    <div class="blo footer-services">
+    <div class="bloc footer-horaires">
 
-      <h3>Horaires</h3>
+      <h3>Nos horaires</h3>
 
       <ul class="liste-horaires">
         <li>lun.:  08:45 - 12:00, 14:00 - 18:00</li>
@@ -31,7 +61,7 @@
 
     </div>
 
-    <div class="blo footer-services">
+    <div class="bloc footer-services">
 
       <h3>Nos Services</h3>
 
@@ -46,5 +76,4 @@
     </div>
 
   </div>
-  
-</footer>
+   -->
