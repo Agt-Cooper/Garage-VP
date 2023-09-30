@@ -1,11 +1,20 @@
+/***************/
+/*** General ***/
+/***************/
+
 html {
   scroll-behavior: smooth;
 }
+
 body{
   margin: 0;
   padding: 0;
   font-family: 'Courier New', Courier, monospace
 }
+
+/***************/
+/*** HEADER ****/
+/***************/
 nav{
   display: flex;
   flex-wrap: wrap;
@@ -77,12 +86,17 @@ header h5 {
   text-align: center;
 }
 
+/********************/
+/*** MAIN CONTENT ***/
+/********************/
+
 .main {
   margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 
 .main .content .card {
   display: flex;
@@ -101,7 +115,6 @@ header h5 {
 
 .main .content .card.right {
   flex: 0 0 75%;
-  
 }
 
 .main .content .card .right img {
@@ -109,6 +122,10 @@ header h5 {
   width: 400px;
   margin-top: 5px;
 }
+
+/**************/
+/*** FOOTER ***/
+/**************/
 
 footer {
   margin-top: 40px;
@@ -170,6 +187,10 @@ footer #contact {
   }
 }
 
+/*************/
+/*** MISC  ***/
+/*************/
+
 .information {
   color: red;
   /* border: 1px dashed darkred; */
@@ -178,4 +199,77 @@ footer #contact {
   margin: auto;
   text-align: center;
   font-weight: bold;
+}
+
+
+/************************/
+/*** SERVICES DISPLAY ***/
+/************************/
+
+.service-container {
+  width: 1000px;
+  margin: 30px auto auto auto;
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px 200px;
+  grid-gap: 40px;
+}
+
+.service-item {
+    width: 200px;
+    padding: 10px;
+    background-color: #f6f6f6;
+    border-radius: 5px;
+    font-size: 150%;
+    border-radius: 15px;
+}
+
+.service-img img {
+  width: 180px;
+  height: 180px;
+  border-radius: 15px;
+}
+
+/* product-info */
+.service-info {
+  padding-left: 5px;
+  padding-top: 5px;
+}
+
+/* service-title */
+.service-title {
+  font-size: .99rem;
+  line-height: 1.5;
+  font-weight: bold;
+}
+
+/* product-desc */
+.service-desc {
+  font-size: .75rem;
+  line-height: 1.5;
+  color: rgba(58, 56, 53, 0.7);  
+}
+
+/*************/
+/*** ADMIN ***/
+/*************/
+
+.admin-service-list {
+  max-height: 500px;
+  overflow: scroll;
+  padding: 0;
+  border: 1px solid lightgrey;
+}
+
+
+#admin-service-preview {
+  margin: 30px auto auto auto;
+  width: 200px;
+}
+
+.admin-panel {
+  margin-top: 30px;
+}
+
+#admin-service-details-form .row {
+  margin: 15px auto 15px auto;
 }

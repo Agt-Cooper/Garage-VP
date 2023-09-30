@@ -100,7 +100,7 @@ function populateServiceForm(service_id) {
       }
   }
 
-  xhttp.open('GET', '/services.json?id='+service_id, true)
+  xhttp.open('GET', '/services.json?all&id='+service_id, true)
   xhttp.send(null)
   
 }
@@ -152,7 +152,7 @@ function getServiceList() {
       }
     };
 
-    xhttp.open('GET', '/services.json', true);
+    xhttp.open('GET', '/services.json?all', true);
     xhttp.send(null);
 }
 

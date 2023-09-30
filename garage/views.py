@@ -17,6 +17,15 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
+def services_html(request):
+    template = loader.get_template("garage/services.html")
+    context = {
+        'page_title': 'Nos Services',
+        'page_script': 'js/home.js',
+    }
+    return HttpResponse(template.render(context, request))
+
+
 
 def admin_services_html(request):
 
@@ -64,24 +73,17 @@ def delete_service(request, id):
     return JsonResponse({'result': False})
 
 def services_json(request):
+    all_services = request.GET.get('all', None)
+    service_id = request.GET.get('id', None)
+
     services = Service.objects.all()
 
-    service_id = request.GET.get('id', None)
+    if all_services is None:
+        services = services.filter(enabled=True)
+
     if service_id is not None:
         services = services.filter(pk=service_id)
 
     return JsonResponse({'services': [s.desc() for s in services]})
-
-###############################################################################
-################ On verra plus tard ###########################################
-###############################################################################
-def services_html(request):
-    services = Service.objects.filter(enabled=True)
-    template = loader.get_template("garage/services.html")
-    context = {
-        'page_title': 'Nos Services',
-        'service_list': services,
-    }
-    return HttpResponse(template.render(context, request))
 
 
