@@ -55,6 +55,12 @@ def admin_services_html(request):
 ################ Web Service ##################################################
 ###############################################################################
 
+def delete_service(request, id):
+    to_delete = Service.objects.get(id=id)
+    if to_delete is not None:
+        to_delete.delete()
+        return JsonResponse({'result': True})
+    return JsonResponse({'result': False})
 
 def services_json(request):
     services = Service.objects.all()

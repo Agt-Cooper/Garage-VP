@@ -1,4 +1,7 @@
+////////////////////////////////////////////////////////////////////////////////
+/// Page initialization scripts
 function preparePage() {
+  clearServiceDetailsForm()
   getServiceList()
 
   document.getElementById('admDetailsEnabled').addEventListener('click', updateEnableServiceCheckbox);
@@ -8,6 +11,8 @@ function preparePage() {
   document.getElementById('admDelete').addEventListener('click', deleteCurrentService);
 }
 
+////////////////////////////////////////////////////////////////////////////////
+/// Présente le formulaire pour un nouveau service prêt à être créé
 function prepareNewService() {
   clearServiceDetailsForm();
 
@@ -16,16 +21,33 @@ function prepareNewService() {
   btnValidate.disabled = false;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+/// Supprime le service actuellement sélectionné de la base de données
 function deleteCurrentService() {
-  alert('deleteCurrentService()');
+  var xhttp = new XMLHttpRequest();
+
+   xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        preparePage()
+      }
+    }
+
+  form = document.getElementById('admin-service-details-form');
+  service_id = form.dataset.current_service;
+  xhttp.open('GET', '/services/delete/'+service_id+'/', true);
+  xhttp.send();
 }
 
+////////////////////////////////////////////////////////////////////////////////
+/// Met à jour le texte du bouton Actif/Inactif du formulaire
 function updateEnableServiceCheckbox() {
   cbxEnabled = document.getElementById('admDetailsEnabled');
   lblEnabled = document.getElementById('admDetailsEnabledLabel');
   lblEnabled.innerHTML = cbxEnabled.checked ? 'Actif' : 'Inactif';
 }
 
+////////////////////////////////////////////////////////////////////////////////
+/// Réinitialise la page pour un état "propre"
 function clearServiceDetailsForm() {
   document.getElementById('admin-service-details-form').reset();
   document.getElementById('admDetailsName').value = "";
@@ -35,6 +57,7 @@ function clearServiceDetailsForm() {
   updateEnableServiceCheckbox();
 
   formProduct = document.getElementById('admin-service-details-form');
+  delete formProduct.dataset.current_service;
   formProduct.action = "admin.html";
   document.getElementById('admin-service-list').childNodes.forEach(btnToUnselect => { btnToUnselect.classList.remove('active'); });
   document.getElementById('admDelete').hidden=true;
@@ -44,6 +67,7 @@ function clearServiceDetailsForm() {
   btnValidate.disabled = true;
 }
 
+////////////////////////////////////////////////////////////////////////////////
 // Remplit le formulaire de droite avec les informations du service
 // dont l'id est en paramètre
 function populateServiceForm(service_id) {
@@ -65,7 +89,7 @@ function populateServiceForm(service_id) {
         updateEnableServiceCheckbox();
 
         formProduct = document.getElementById('admin-service-details-form');
-        // formProduct.dataset.current_product = service.id;
+        formProduct.dataset.current_service = service.id;
         formProduct.action = "admin.html?id="+service.id;
 
         btnValidate = document.getElementById('admValidate');
@@ -79,6 +103,8 @@ function populateServiceForm(service_id) {
   
 }
 
+////////////////////////////////////////////////////////////////////////////////
+/// Gesetion de sélection d'un service dans la liste de gauche
 function onAdminService_Click(type, listenever) {
 
   clearServiceDetailsForm();
@@ -91,12 +117,14 @@ function onAdminService_Click(type, listenever) {
   // Mettre à jour la Preview (plus tard)
   
   // Afficher le bouton de suppression
+  document.getElementById('admDelete').hidden=false;
 
   // Desactive tous les boutons et active celui qui est sélectioné
   document.getElementById('admin-service-list').childNodes.forEach(btnToUnselect => { btnToUnselect.classList.remove('active'); })
   btnSelected.classList.add('active')
 }
 
+////////////////////////////////////////////////////////////////////////////////
 // Récupère la liste des services et les affiche dans 'admin-service-list'
 function getServiceList() {
     var xhttp = new XMLHttpRequest();
@@ -105,6 +133,8 @@ function getServiceList() {
       if (this.readyState == 4 && this.status == 200) {
         services = JSON.parse(this.responseText).services
         divServices = document.getElementById('admin-service-list');
+
+        divServices.innerHTML = "";
 
         services.forEach(service => {
             btnProduct = document.createElement('button');
@@ -125,4 +155,5 @@ function getServiceList() {
 
 
 document.onload = preparePage()
+
 
