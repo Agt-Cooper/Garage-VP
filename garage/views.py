@@ -21,6 +21,7 @@ def index(request):
 def admin_services_html(request):
 
     service_id = request.GET.get('id', None)
+    # print(f"service_id: {service_id}")
 
     if request.method == 'POST':
         # Dans le cas d'une requête POST
@@ -28,20 +29,19 @@ def admin_services_html(request):
         # ou mettre le produit à jour
         # ou créer un nouveau produit
 
-        if service_id is not None:
+        if service_id is None:
+            service = Service()
+        else:
             service = Service.objects.get(id=service_id)
-            service.name = request.POST.get('service_name', 'Service')
-            service.price = request.POST.get('service_price', 0)
-            service.enabled = 'service_enabled' in request.POST
 
-            if 'service_img_name' in request.FILES:
-                service.picture = request.FILES['service_img_name']
+        service.name    = request.POST.get('service_name', 'Service')
+        service.price   = request.POST.get('service_price', 0)
+        service.enabled = 'service_enabled' in request.POST
 
-            service.save()
+        if 'service_img_name' in request.FILES:
+            service.picture = request.FILES['service_img_name']
 
-        # image = request.POST.get('service_img_name', None)
-        # print(f"image: {image}")
-
+        service.save()
 
     template = loader.get_template("garage/admin_services.html")
     context = {

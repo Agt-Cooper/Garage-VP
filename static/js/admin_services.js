@@ -1,14 +1,19 @@
 function preparePage() {
   getServiceList()
 
-  // document.getElementById('admDetailsEnabled').addEventListener('click', updateEnableProductCheckbox);
+  document.getElementById('admDetailsEnabled').addEventListener('click', updateEnableServiceCheckbox);
+
   document.getElementById('admValidate').disabled = true;
   document.getElementById('admCreate').addEventListener('click', prepareNewService);
   document.getElementById('admDelete').addEventListener('click', deleteCurrentService);
 }
 
 function prepareNewService() {
-  alert('prepareNewService()');
+  clearServiceDetailsForm();
+
+  btnValidate = document.getElementById('admValidate');
+  btnValidate.innerHTML= 'Créer Service';
+  btnValidate.disabled = false;
 }
 
 function deleteCurrentService() {
@@ -27,15 +32,16 @@ function clearServiceDetailsForm() {
   document.getElementById('admDetailsPrice').value = 0.0;
   document.getElementById('admDetailsEnabled').checked = false;
 
-  // clearThumbnail();
-  // updatePromoFormEnabled();
   updateEnableServiceCheckbox();
 
-  formService  = document.getElementById('admin-service-details-form');
-  // delete formService .dataset.current_service;
-  // formService .action = "admin.html";
+  formProduct = document.getElementById('admin-service-details-form');
+  formProduct.action = "admin.html";
   document.getElementById('admin-service-list').childNodes.forEach(btnToUnselect => { btnToUnselect.classList.remove('active'); });
   document.getElementById('admDelete').hidden=true;
+
+  btnValidate = document.getElementById('admValidate');
+  btnValidate.innerHTML= 'Sélectionnez un service dans la liste';
+  btnValidate.disabled = true;
 }
 
 // Remplit le formulaire de droite avec les informations du service
@@ -48,7 +54,6 @@ function populateServiceForm(service_id) {
         services = JSON.parse(this.responseText).services
         service = services[0]
 
-        clearServiceDetailsForm();
 
         // Mettre à jour le formulaire
         document.getElementById('admDetailsName').value = service.name;
@@ -76,6 +81,8 @@ function populateServiceForm(service_id) {
 
 function onAdminService_Click(type, listenever) {
 
+  clearServiceDetailsForm();
+
 
   // Récupérer l'ID du service selectionné
   btnSelected = type.target;
@@ -85,7 +92,9 @@ function onAdminService_Click(type, listenever) {
   
   // Afficher le bouton de suppression
 
-  // Désactive tous les boutons, active celui là
+  // Desactive tous les boutons et active celui qui est sélectioné
+  document.getElementById('admin-service-list').childNodes.forEach(btnToUnselect => { btnToUnselect.classList.remove('active'); })
+  btnSelected.classList.add('active')
 }
 
 // Récupère la liste des services et les affiche dans 'admin-service-list'
