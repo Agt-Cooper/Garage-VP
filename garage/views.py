@@ -5,9 +5,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.template import loader
 
-from .models import Service, OpeningHours
-
-
+from .models import Service, OpeningHours, Product
 
 
 def get_opening_hours():
@@ -35,6 +33,16 @@ def index(request):
     context = {
         **default_context(),
         'page_script': 'js/home.js'
+    }
+
+    return HttpResponse(template.render(context, request))
+
+def catalog_html(request):
+    template = loader.get_template("garage/catalog.html")
+
+    context = {
+        **default_context(),
+        'page_script': 'js/catalog.js'
     }
 
     return HttpResponse(template.render(context, request))
@@ -128,5 +136,19 @@ def services_json(request):
         services = services.filter(pk=service_id)
 
     return JsonResponse({'services': [s.desc() for s in services]})
+
+def products_json(request):
+    all_products = request.GET.get('all', None)
+    product_id = request.GET.get('id', None)
+
+    products = Product.objects.all()
+
+    if all_products is None:
+        products = products.filter(enabled=True)
+
+    if product_id is not None:
+        products = products.filter(pk=product_id)
+
+    return JsonResponse({'products': [s.desc() for s in products]})
 
 
