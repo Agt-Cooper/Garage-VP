@@ -15,6 +15,7 @@ class Service(models.Model):
             'id': self.id,
             'name': self.name,
             'price': self.price,
+            'enabled': self.enabled,
         }
 
         if self.picture:

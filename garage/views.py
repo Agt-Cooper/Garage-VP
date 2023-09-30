@@ -19,6 +19,30 @@ def index(request):
 
 
 def admin_services_html(request):
+
+    service_id = request.GET.get('id', None)
+
+    if request.method == 'POST':
+        # Dans le cas d'une requête POST
+        # On utilise les paramètres envoyés par la page précédente pour
+        # ou mettre le produit à jour
+        # ou créer un nouveau produit
+
+        if service_id is not None:
+            service = Service.objects.get(id=service_id)
+            service.name = request.POST.get('service_name', 'Service')
+            service.price = request.POST.get('service_price', 0)
+            service.enabled = 'service_enabled' in request.POST
+
+            if 'service_img_name' in request.FILES:
+                service.picture = request.FILES['service_img_name']
+
+            service.save()
+
+        # image = request.POST.get('service_img_name', None)
+        # print(f"image: {image}")
+
+
     template = loader.get_template("garage/admin_services.html")
     context = {
         'page_title': 'Administration / Services',
@@ -27,6 +51,23 @@ def admin_services_html(request):
     return HttpResponse(template.render(context, request))
 
 
+###############################################################################
+################ Web Service ##################################################
+###############################################################################
+
+
+def services_json(request):
+    services = Service.objects.all()
+
+    service_id = request.GET.get('id', None)
+    if service_id is not None:
+        services = services.filter(pk=service_id)
+
+    return JsonResponse({'services': [s.desc() for s in services]})
+
+###############################################################################
+################ On verra plus tard ###########################################
+###############################################################################
 def services_html(request):
     services = Service.objects.filter(enabled=True)
     template = loader.get_template("garage/services.html")
@@ -36,17 +77,4 @@ def services_html(request):
     }
     return HttpResponse(template.render(context, request))
 
-###############################################################################
-################ Web Service ##################################################
-###############################################################################
 
-
-def services_json(request):
-    service_id = request.GET.get('id', None)
-
-    services = Service.objects.filter(enabled=True)
-
-    if service_id is not None:
-        services = services.filter(pk=service_id)
-
-    return JsonResponse({'services': [s.desc() for s in services]})
