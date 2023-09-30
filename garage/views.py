@@ -17,15 +17,6 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
-def services_html(request):
-    template = loader.get_template("garage/services.html")
-    context = {
-        'page_title': 'Nos Services',
-        'page_script': 'js/home.js',
-    }
-    return HttpResponse(template.render(context, request))
-
-
 
 def admin_services_html(request):
 
