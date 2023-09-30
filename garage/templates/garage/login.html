@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}Connexion{% endblock title %}
+
+{% block content %}
+<section class="infobox">
+    <div class="infotitle">
+            <h1>Connexion</h1>
+            <p></p>
+    </div>
+    <form class="infodesc" method="post" action="login.html">
+       {% csrf_token %}
+       <div class="text">
+            <label>Nom d'utilisateur</label>
+            <input type="text" name="username"></input>
+            <label>Mot de passe</label>
+            <input type="password" name="password"></input>
+        </div>
+        <button type="submit" class="btn btn-primary">Connexion</button>
+    </form>
+</div>
+{% endblock content %}

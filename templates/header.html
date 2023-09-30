@@ -2,14 +2,19 @@
 <!-- Header --> 
 
 <nav>
-    <h1>Garage V.Parrot</h1>
+    <h1><a href="/">Garage V.Parrot</a></h1>
     <div class="onglets">
-      <a href="#">Home</a>
       <a href="#"></a>
       <a href="#"></a>
       <a href="#">Catalogue</a>
-      <a href="#">Connexion</a>
+      {% if user.is_authenticated %}
+      <a href="/services/admin.html">Administration</a>
+      <a href="/logout.html">Déconnexion</a>
+      {% else %}
+      <a href="/login.html">Connexion</a>
+      {% endif %}
     </div>
   </nav>
 
 </header>
+

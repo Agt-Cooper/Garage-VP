@@ -1,4 +1,7 @@
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
 from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect
 from django.shortcuts import render
 from django.template import loader
 
@@ -51,6 +54,28 @@ def admin_services_html(request):
     template = loader.get_template("garage/admin_services.html")
     return HttpResponse(template.render(context, request))
 
+
+def logout_user(request):
+    logout(request)
+    return redirect('/')
+
+
+def login_user(request):
+    if request.method == 'POST':
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(request, username=username, password=password)
+
+        if user is None:
+            return redirect('login.html')
+
+        login(request, user)
+        return redirect('services/admin.html')
+
+    template = loader.get_template("garage/login.html")
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
 
 ###############################################################################
 ################ Web Service ##################################################

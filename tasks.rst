@@ -7,7 +7,7 @@ Design et implementation de la BDD
 
 - [ ] Utilisateurs
   - [ ] Employés
-  - [ ] Admins
+  - [X] Admins
 - [ ] horaires du garage
 - [X] Services
 - [ ] Mail visiteur
@@ -21,8 +21,8 @@ Design et implementation de la BDD
 US1. L'administrateur et l'Employé peuvent se connecter en utilisant leur e-mail + mot de passe sécurisé.
 =========================================================================================================
 
-- [ ] Front-End: Page de connexion
-- [ ] Back-End: Sessions via Django
+- [X] Front-End: Page de connexion
+- [X] Back-End: Sessions via Django
 - [ ] L'administrateur peut créer un compte employé
 
 
