@@ -5,8 +5,25 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.template import loader
 
-from .models import Service
+from .models import Service, OpeningHours
 
+
+
+
+def get_opening_hours():
+    hours = OpeningHours.objects.all()
+
+    week_hours = {}
+    for hour in hours:
+        week_hours.setdefault(hour.weekday, []).append(
+                f'{hour.opening_time} - {hour.closing_time}'
+        )
+    return [f"{d}: {', '.join(h)}" for d,h in week_hours.items()]
+
+def default_context():
+    return  {
+        'opening_hours': get_opening_hours()
+    }
 
 ###############################################################################
 ################ HTML Front-End ###############################################
@@ -14,14 +31,20 @@ from .models import Service
 
 def index(request):
     template = loader.get_template("garage/home.html")
+
     context = {
-        'page_script': 'js/home.js',
+        **default_context(),
+        'page_script': 'js/home.js'
     }
+
     return HttpResponse(template.render(context, request))
 
 def admin_home_html(request):
     template = loader.get_template("garage/admin_home.html")
-    context = {'page_title': 'Administration' }
+    context = {
+        **default_context(),
+        'page_title': 'Administration',
+    }
     return HttpResponse(template.render(context, request))
 
     
@@ -30,6 +53,7 @@ def admin_services_html(request):
 
     service_id = request.GET.get('id', None)
     context = {
+        **default_context(),
         'page_title': 'Administration / Services',
         'page_script': 'js/admin_services.js',
     }
@@ -78,9 +102,7 @@ def login_user(request):
         return redirect('admin/home.html')
 
     template = loader.get_template("garage/login.html")
-    context = {
-    }
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render(default_context(), request))
 
 ###############################################################################
 ################ Web Service ##################################################

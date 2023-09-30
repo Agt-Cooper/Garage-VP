@@ -1,6 +1,21 @@
 from django.db import models
 
 
+class OpeningHours(models.Model):
+    weekday = models.CharField(max_length=200)
+    opening_time = models.CharField(max_length=200)
+    closing_time = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"{self.weekday}: {self.opening_time} - {self.closing_time}"
+
+    def desc(self):
+        return {
+                'weekday': self.weekday,
+                'opening_time': self.opening_time,
+                'closing_time': self.closing_time,
+        }
+
 class Service(models.Model):
     name = models.CharField(max_length=200)
     price = models.FloatField()

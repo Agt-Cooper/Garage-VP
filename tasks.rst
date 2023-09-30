@@ -29,7 +29,7 @@ US1. L'administrateur et l'Employé peuvent se connecter en utilisant leur e-mai
 US3. Définir des horaires d'ouverture
 =====================================
 
-- [ ] Les horaires sont disponibles dans le footer du site web
+- [X] Les horaires sont disponibles dans le footer du site web
 - [ ] L'administrateur peut éditer ces informations depuis le back-office.
 
 
