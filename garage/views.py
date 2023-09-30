@@ -13,7 +13,7 @@ def index(request):
     services = Service.objects.filter(enabled=True)
     template = loader.get_template("garage/home.html")
     context = {
-        'page_title': 'Garage VP',
+        'page_script': 'js/home.js',
     }
     return HttpResponse(template.render(context, request))
 

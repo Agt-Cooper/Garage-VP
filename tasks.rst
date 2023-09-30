@@ -9,7 +9,7 @@ Design et implementation de la BDD
   - [ ] Employés
   - [ ] Admins
 - [ ] horaires du garage
-- [ ] Services
+- [X] Services
 - [ ] Mail visiteur
 - [ ] Avis
 - [ ] Véhicules
@@ -37,7 +37,7 @@ US2. Présenter les services
 ===========================
 
 - [X] Le site web présente les différents services disponibles
-- [ ] L'administrateur peut modifier la liste et les détails des services disponibles
+- [X] L'administrateur peut modifier la liste et les détails des services disponibles
 
 
 US3. Exposer les voitures d'occasion
