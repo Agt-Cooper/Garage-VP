@@ -1,83 +1,171 @@
-/* service-container */
-.service-container {
-  width: 1000px;
-  margin: 30px auto auto auto;
-  display: grid;
-  grid-template-columns: 200px 200px 200px 200px 200px;
-  grid-gap: 40px;
+html {
+  scroll-behavior: smooth;
 }
-
-.service-item {
-    width: 200px;
-    padding: 10px;
-    background-color: #f6f6f6;
-    border-radius: 5px;
-    font-size: 150%;
-    border-radius: 15px;
-}
-
-.service-img img {
-  width: 180px;
-  height: 180px;
-  border-radius: 15px;
-}
-
-/* product-info */
-.service-info {
-  padding-left: 5px;
-  padding-top: 5px;
-}
-
-/* service-title */
-.service-title {
-  font-size: .99rem;
-  line-height: 1.5;
-  font-weight: bold;
-}
-
-/* product-desc */
-.service-desc {
-  font-size: .75rem;
-  line-height: 1.5;
-  color: rgba(58, 56, 53, 0.7);  
-}
-
-.admin-service-list {
-  max-height: 500px;
-  overflow: scroll;
+body{
+  margin: 0;
   padding: 0;
-  border: 1px solid lightgrey;
+  font-family: 'Courier New', Courier, monospace
+}
+nav{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 3px solid #0E2954;
+}
+nav h1{
+  color: #0E2954;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 40px;
+}
+
+nav .liens{
+  margin-top: 4px;
+  margin-left: 320px;
+
+}
+
+nav .liens a{
+  text-decoration: none;
+  color: black;
+  margin-right: 10px;
+  border-bottom: 1px solid #0E2954;
+  padding-bottom: 3px;
+}
+
+.exept {
+  background-color: lightgreen;
+  border-radius: 0px 14px;
+  margin-bottom: 2px;   
+  
+}
+
+button {
+  display: block;
+  cursor: grab;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(#);
+  /*background: url('../Site/Images/Bannière\ accueil.jpg');*/
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-shadow: 0 0 3px black;
+  padding: 80px;
+  
 }
 
 
-#admin-service-preview {
-  margin: 30px auto auto auto;
-  width: 200px;
+header h1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 50px;
 }
 
-.admin-panel {
-  margin-top: 30px;
+header h3 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 24px;
 }
 
-#admin-service-details-form .row {
-  margin: 15px auto 15px auto;
+header h5 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 12px;
+  margin-top: 2px;
+  text-align: center;
 }
 
-.pouet {
-        color: red;
-        background: rgb(21, 227, 55);
-        border: 1px dashed blue;
-        border-radius: 5px;
+.main {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* ####### FOOTER ####### */
+.main .content .card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 18px;
+
+}
+
+.main .content .card .left {
+  flex: 0 0 25%;
+  padding : 20px;
+  background-color: #0E2954;
+  color: #84A7A1;
+}
+
+.main .content .card.right {
+  flex: 0 0 75%;
+  
+}
+
+.main .content .card .right img {
+  height: 300px;
+  width: 400px;
+  margin-top: 5px;
+}
 
 footer {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-style: italic;
-  background: #fff7eb;
+  margin-top: 40px;
+  border-top: 3px solid #0E2954;
+  background-color: black;
+  color: white;
+  padding: 30px 100px;
 }
 
-.liste-services {
-  list-style-type: none;
+footer h1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /*border-bottom: 2px solid #0E2954;*/
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  text-decoration-color: #0E2954;
+  width: 15%;
+  padding-bottom: 5px;
+}
+
+footer .contacts {
+  margin-top: -10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+footer .contacts .contact {
+  margin-right: 20px;
+  padding: 20px;
+
+}
+
+footer .contacts .contact p {
+  max-width: 300px;
+}
+
+footer #contact {
+  color: #2E8A99;
+}
+
+@media screen and (max-width : 680px){
+  nav .liens {
+      margin-left: 0px;
+      margin-bottom: 20px;
+  }
+  .main .card{
+      margin: 10px;
+  }
+  .main .content .card .right img {
+      height: 150px;
+      width: 100%;
+      margin-top: 0px;
+  }
+  .main .content .card {
+      display: block;
+  }
+  footer {
+      padding: 30px;
+  }
 }
