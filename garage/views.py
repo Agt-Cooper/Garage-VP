@@ -13,13 +13,18 @@ from .models import Service
 ###############################################################################
 
 def index(request):
-    services = Service.objects.filter(enabled=True)
     template = loader.get_template("garage/home.html")
     context = {
         'page_script': 'js/home.js',
     }
     return HttpResponse(template.render(context, request))
 
+def admin_home_html(request):
+    template = loader.get_template("garage/admin_home.html")
+    context = {'page_title': 'Administration' }
+    return HttpResponse(template.render(context, request))
+
+    
 
 def admin_services_html(request):
 
@@ -70,7 +75,7 @@ def login_user(request):
             return redirect('login.html')
 
         login(request, user)
-        return redirect('services/admin.html')
+        return redirect('admin/home.html')
 
     template = loader.get_template("garage/login.html")
     context = {

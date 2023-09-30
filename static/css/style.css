@@ -2,6 +2,11 @@
 /*** General ***/
 /***************/
 
+a {
+        color: white;
+}
+
+
 html {
   scroll-behavior: smooth;
 }
