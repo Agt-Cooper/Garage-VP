@@ -169,3 +169,13 @@ footer #contact {
       padding: 30px;
   }
 }
+
+.information {
+  color: red;
+  /* border: 1px dashed darkred; */
+  width: 800px;
+  min-height: 20px;
+  margin: auto;
+  text-align: center;
+  font-weight: bold;
+}

@@ -21,7 +21,10 @@ def index(request):
 def admin_services_html(request):
 
     service_id = request.GET.get('id', None)
-    # print(f"service_id: {service_id}")
+    context = {
+        'page_title': 'Administration / Services',
+        'page_script': 'js/admin_services.js',
+    }
 
     if request.method == 'POST':
         # Dans le cas d'une requête POST
@@ -31,8 +34,10 @@ def admin_services_html(request):
 
         if service_id is None:
             service = Service()
+            context['page_information'] = 'Service créé'
         else:
             service = Service.objects.get(id=service_id)
+            context['page_information'] = 'Service mis à jour'
 
         service.name    = request.POST.get('service_name', 'Service')
         service.price   = request.POST.get('service_price', 0)
@@ -44,10 +49,6 @@ def admin_services_html(request):
         service.save()
 
     template = loader.get_template("garage/admin_services.html")
-    context = {
-        'page_title': 'Administration / Services',
-        'page_script': 'js/admin_services.js',
-    }
     return HttpResponse(template.render(context, request))
 
 

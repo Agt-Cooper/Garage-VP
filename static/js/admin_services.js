@@ -15,6 +15,7 @@ function preparePage() {
 /// Présente le formulaire pour un nouveau service prêt à être créé
 function prepareNewService() {
   clearServiceDetailsForm();
+  information("")
 
   btnValidate = document.getElementById('admValidate');
   btnValidate.innerHTML= 'Créer Service';
@@ -29,6 +30,7 @@ function deleteCurrentService() {
    xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         preparePage()
+        information("Service Supprimé")
       }
     }
 
@@ -108,6 +110,7 @@ function populateServiceForm(service_id) {
 function onAdminService_Click(type, listenever) {
 
   clearServiceDetailsForm();
+  information("")
 
 
   // Récupérer l'ID du service selectionné
@@ -151,6 +154,15 @@ function getServiceList() {
 
     xhttp.open('GET', '/services.json', true);
     xhttp.send(null);
+}
+
+function information(message) {
+  pInfo = document.getElementById('information');
+  if (message != null && message.length > 0) {
+    pInfo.innerHTML = message;
+  } else {
+    pInfo.innerHTML = "";
+  }
 }
 
 
