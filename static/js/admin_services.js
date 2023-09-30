@@ -5,10 +5,23 @@ function preparePage() {
   getServiceList()
 
   document.getElementById('admDetailsEnabled').addEventListener('click', updateEnableServiceCheckbox);
-
   document.getElementById('admValidate').disabled = true;
   document.getElementById('admCreate').addEventListener('click', prepareNewService);
   document.getElementById('admDelete').addEventListener('click', deleteCurrentService);
+
+
+  preselected_id = new URLSearchParams(window.location.search).get('id');
+  if(preselected_id != null) {
+    prepareExistingService(preselected_id)
+
+    // Desactive tous les boutons et active celui qui est sélectioné
+    document.getElementById('admin-service-list').childNodes.forEach(btnService => { 
+      // console.log(btnService.dataset.service_id)
+      if (btnService.dataset.service_id == preselected_id) {
+        btnService.classList.add('active')
+      }
+    })
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -106,16 +119,10 @@ function populateServiceForm(service_id) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-/// Gesetion de sélection d'un service dans la liste de gauche
-function onAdminService_Click(type, listenever) {
-
+function prepareExistingService(service_id) {
   clearServiceDetailsForm();
   information("")
 
-
-  // Récupérer l'ID du service selectionné
-  btnSelected = type.target;
-  service_id = btnSelected.dataset.service_id
   populateServiceForm(service_id)
 
   // Mettre à jour la Preview 
@@ -123,6 +130,16 @@ function onAdminService_Click(type, listenever) {
   
   // Afficher le bouton de suppression
   document.getElementById('admDelete').hidden=false;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/// Gestion de sélection d'un service dans la liste de gauche
+function onAdminService_Click(type, listener) {
+  // Récupérer l'ID du service selectionné
+  btnSelected = type.target;
+  service_id = btnSelected.dataset.service_id
+
+  prepareExistingService(service_id)
 
   // Desactive tous les boutons et active celui qui est sélectioné
   document.getElementById('admin-service-list').childNodes.forEach(btnToUnselect => { btnToUnselect.classList.remove('active'); })
@@ -148,6 +165,9 @@ function getServiceList() {
             btnProduct.classList.add('list-group-item-action');
             btnProduct.dataset.service_id = service.id;
             btnProduct.addEventListener("click", onAdminService_Click); 
+            if (new URLSearchParams(window.location.search).get('id') == service.id) {
+              btnProduct.classList.add('active')
+            }
             btnProduct.innerHTML += service.name
             divServices.appendChild(btnProduct);
         });
