@@ -32,7 +32,7 @@ function buildServiceDiv(service) {
   return divItem;
 }
 
-function refreshServices(htmlContainer) {
+function refreshServices(htmlContainer, params="") {
 
     var xhttp = new XMLHttpRequest();
      xhttp.onreadystatechange = function() {
@@ -51,7 +51,8 @@ function refreshServices(htmlContainer) {
       }
     };
 
-    xhttp.open('GET','/services.json', true);
+
+    xhttp.open('GET','/services.json'+params, true);
     xhttp.send();
 }
 

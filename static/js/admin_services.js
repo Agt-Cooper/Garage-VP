@@ -115,9 +115,11 @@ function onAdminService_Click(type, listenever) {
 
   // Récupérer l'ID du service selectionné
   btnSelected = type.target;
-  populateServiceForm(btnSelected.dataset.service_id)
+  service_id = btnSelected.dataset.service_id
+  populateServiceForm(service_id)
 
-  // Mettre à jour la Preview (plus tard)
+  // Mettre à jour la Preview 
+  refreshServices('admin-service-preview', '?all&id='+service_id);
   
   // Afficher le bouton de suppression
   document.getElementById('admDelete').hidden=false;
