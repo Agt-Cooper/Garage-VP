@@ -12,7 +12,12 @@ urlpatterns = [
 
     path("admin/home.html", views.admin_home_html, name="admin_home_html"),
 
-    path("admin/services.html", views.admin_services_html, name="admin_services_html"),
+    path("admin/marketing.html", views.admin_marketing_html,
+         name="admin_marketing_html"),
+    path('hours/delete/<int:id>/', views.delete_hour, name="delete_hour"),
+
+    path("admin/services.html", views.admin_services_html,
+         name="admin_services_html"),
     path('services/delete/<int:id>/', views.delete_service, name="delete_service"),
     path("services.json", views.services_json, name="services_json"),
 

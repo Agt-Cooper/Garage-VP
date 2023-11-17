@@ -285,3 +285,7 @@ footer #contact {
 #admin-service-details-form .row {
   margin: 15px auto 15px auto;
 }
+
+.inline-me {
+    display: inline;
+}

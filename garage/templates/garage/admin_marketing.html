@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<form method="POST" action="marketing.html">
+    {% csrf_token %}
+
+
+    <ul>
+        {% for hour in opening_hours %} 
+    <li>
+    <select name="weekday-{{ hour.id }}" id="weekday-{{ hour.id }}">
+        <option {% if hour.weekday == 'Lundi' %}selected="selected"{% endif %} value="Lundi">Lundi</option>
+        <option {% if hour.weekday == 'Mardi' %}selected="selected"{% endif %} value="Mardi">Mardi</option>
+        <option {% if hour.weekday == 'Mercredi' %}selected="selected"{% endif %} value="Mercredi">Mercredi</option>
+        <option {% if hour.weekday == 'Jeudi' %}selected="selected"{% endif %} value="Jeudi">Jeudi</option>
+        <option {% if hour.weekday == 'Vendredi' %}selected="selected"{% endif %} value="Vendredi">Vendredi</option>
+        <option {% if hour.weekday == 'Samedi' %}selected="selected"{% endif %} value="Samedi">Samedi</option>
+        <option {% if hour.weekday == 'Dimanche' %}selected="selected"{% endif %} value="Dimanche">Dimanche</option>
+      </select>
+
+
+      <select name="opening-{{ hour.id }}" id="opening-{{ hour.id }}">
+         {% for htime in available_time %}
+         <option {% if hour.opening_time == htime %}selected="selected"{% endif %} value="{{htime}}">{{htime}}</option>
+         {% endfor %}
+     </select>
+
+     <select name="closing-{{ hour.id }}" id="closing-{{ hour.id }}">
+         {% for htime in available_time %}
+         <option {% if hour.closing_time == htime %}selected="selected"{% endif %} value="{{htime}}">{{htime}}</option>
+         {% endfor %}
+     </select>
+
+     <button class="inline-me delete-hour" type="button" data-id="{{ hour.id }}">Supprimer</button>
+
+    </li>
+
+
+        {% endfor %}
+    </ul>
+
+    <button type="submit">Valider</button>
+
+
+</form>
+
+
+{% endblock content %}
+
