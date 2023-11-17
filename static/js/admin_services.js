@@ -73,7 +73,7 @@ function clearServiceDetailsForm() {
 
   formProduct = document.getElementById('admin-service-details-form');
   delete formProduct.dataset.current_service;
-  formProduct.action = "admin.html";
+  formProduct.action = "services.html";
   document.getElementById('admin-service-list').childNodes.forEach(btnToUnselect => { btnToUnselect.classList.remove('active'); });
   document.getElementById('admDelete').hidden=true;
 
@@ -105,7 +105,7 @@ function populateServiceForm(service_id) {
 
         formProduct = document.getElementById('admin-service-details-form');
         formProduct.dataset.current_service = service.id;
-        formProduct.action = "admin.html?id="+service.id;
+        formProduct.action = "services.html?id="+service.id;
 
         btnValidate = document.getElementById('admValidate');
         btnValidate.innerHTML= 'Mettre à jour';
